@@ -1,6 +1,7 @@
 <?php
 
-enum UnitType{
+enum UnitType 
+{
     case House = 1
     case Apartment
     case Garage

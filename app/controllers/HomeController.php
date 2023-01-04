@@ -2,15 +2,18 @@
 
 class HomeController{
 
-    public function index(){
+    public function index() : void
+    {
         echo "This is the index page of our website!";
     }
 
-    public function about(){
+    public function about() : void
+    {
         echo "This is the about page of our website!";
     }
 
-    public function articles(){
+    public function articles() : void
+    {
         require("../repository/ArticleRepository.php");
         $repository = new ArticleRepository();
         $articles = $repository->getAll();
