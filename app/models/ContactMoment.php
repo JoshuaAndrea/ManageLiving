@@ -1,10 +1,12 @@
 <?php
 
-class ContactMoment{
-    public $id;
-    public $datetime;
-    public $contactType;
-    public $message;
-    public $isResolved;
-    public $tenantId;
+class ContactMoment
+{
+    public int $id;
+    public string $datetime;
+    public string $contactType;
+    public string $title;
+    public string $message;
+    public bool $isResolved;
+    public int $tenantId;
 }
