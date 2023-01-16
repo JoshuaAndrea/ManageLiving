@@ -1,12 +1,12 @@
 <?php
-class ArticleRepository{
+class ArticleRepository extends Repository{
 
     private $connection;
     
 
     public function __construct(){
         
-        //require_once("../dbconfig.php");
+        require_once("../dbconfig.php");
         $db_host = "mysql";
         $db_name = "blogdb";
         $db_username = "root";

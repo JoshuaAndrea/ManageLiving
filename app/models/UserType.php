@@ -2,5 +2,5 @@
 
 enum UserType{
     case Admin = 1
-    case Employee
+    case Employee = 2
 }
