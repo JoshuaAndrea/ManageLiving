@@ -1,6 +1,7 @@
 <?php
 
-enum UserType{
-    case Admin = 1
-    case Employee = 2
+enum UserType
+{
+    case Admin = 1;
+    case Employee = 2;
 }

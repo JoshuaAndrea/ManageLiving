@@ -6,9 +6,12 @@ class Repository
     public function __construct()
     {
         require("../config.php");
-        try {
+        try 
+        {
             $this->connection = new PDO("mysql:host=$db_host;dbname=$db_name", $db_username, $db_password);
-        } catch (PDOException $ex) {
+        } 
+        catch (PDOException $ex) 
+        {
             echo $ex->getMessage();
         }
     }

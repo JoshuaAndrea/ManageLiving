@@ -1,15 +1,15 @@
 <?php
 
-class HomeController{
-
+class HomeController
+{
     public function index() : void
     {
-        echo "This is the index page of our website!";
+        require __DIR__ . '/../views/home/index.php';
     }
 
-    public function about() : void
+    public function housesearch() : void
     {
-        echo "This is the about page of our website!";
+        require __DIR__ . '/../views/home/housesearch.php';
     }
 
     public function articles() : void
@@ -18,6 +18,6 @@ class HomeController{
         $repository = new ArticleRepository();
         $articles = $repository->getAll();
 
-        require("../view/index.php");
+        require("../views/index.php");
     }
 }

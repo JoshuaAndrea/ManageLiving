@@ -1,11 +1,12 @@
 <?php
 
-class Address{
-    public $id;
-    public $streetname;
-    public $housenumber;
-    public $extension;
-    public $city;
-    public $postcode;
+class Address
+{
+    public int $id;
+    public string $streetname;
+    public int $housenumber;
+    public string $extension;
+    public string $city;
+    public string $postcode;
     
 }
