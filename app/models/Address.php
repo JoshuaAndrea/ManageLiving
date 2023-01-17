@@ -2,11 +2,11 @@
 
 class Address
 {
-    public int $id;
-    public string $streetname;
-    public int $housenumber;
-    public string $extension;
-    public string $city;
-    public string $postcode;
-    
+    private int $id;
+    private string $streetname;
+    private int $housenumber;
+    private string $extension;
+    private string $city;
+    private string $postcode;
+    private int $tenantId;
 }

@@ -4,9 +4,9 @@ class Router{
 
     public function route($uri){
         
-        require("../controllers/HomeController.php");
-        require("../controllers/EmployeeController.php");
-        require("../controllers/TenantController.php");
+        require_once("../controllers/HomeController.php");
+        require_once("../controllers/EmployeeController.php");
+        require_once("../controllers/TenantController.php");
 
         switch($uri){
             case "/home/index":
@@ -20,7 +20,7 @@ class Router{
                 break;
             case "/employee/login":
                 $controller = new EmployeeController();
-                $controller->login();
+                $controller->loadLoginScreen();
                 break;
             case "/tenant/main":
                 $controller = new TenantController();

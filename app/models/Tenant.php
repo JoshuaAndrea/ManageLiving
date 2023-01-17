@@ -2,15 +2,14 @@
 
 class Tenant
 {
-    public int $id;
-    public string $firstName;
-    public string $lastName;
-    public string $email;
-    public string $phoneNumber;
-    public string $dateOfBirth;
-    public int $addressId;
+    private int $id;
+    private string $firstName;
+    private string $lastName;
+    private string $email;
+    private string $phoneNumber;
+    private string $dateOfBirth;
 
-    public __construct(int $id, string $firstName, string $lastName, string $email, string $phoneNumber, string $dateOfBirth, int $addressId)
+    public __construct(int $id, string $firstName, string $lastName, string $email, string $phoneNumber, string $dateOfBirth)
     {
         $this->id = $id;
         $this->firstName = $firstName;
@@ -18,7 +17,6 @@ class Tenant
         $this->email = $email;
         $this->phoneNumber = $phoneNumber;
         $this->dateOfBirth = $dateOfBirth;
-        $this->addressId = $addressId;
     }
 }
 

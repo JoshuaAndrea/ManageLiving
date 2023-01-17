@@ -1,41 +1,40 @@
 <?php
 
-require __DIR__ . '/../repositories/UserRepository.php';
-require __DIR__ . '/../models/User.php';
+require_once __DIR__ . '/../repositories/UserRepository.php';
+require_once __DIR__ . '/../models/User.php';
 
 class UserService{
     
-        public function login(string $email, string $password) : User
-        {
-            $repository = new UserRepository();
-            $user = $repository->getByEmail($email);
+    private UserRepository $repository;
+
+    public function __construct()
+    {
+        $this->repository = new UserRepository();
+    }
     
-            if($user == null){
-                return false;
-            }
-    
-            if($user->getPassword() == $password){
-                return true;
-            }
-    
+    public function login(string $email, string $password) : User
+    {
+        $user = $repository->getByEmail($email);
+
+        if($user == null){
             return false;
         }
-    
-        public function register(string $email, string $password) : bool
-        {
-            $repository = new UserRepository();
-            $user = $repository->getByEmail($email);
-    
-            if($user != null){
-                return false;
-            }
-    
-            $user = new User();
-            $user->setEmail($email);
-            $user->setPassword($password);
-    
-            $repository->save($user);
-    
+
+        if($user->getPassword() == $password){
             return true;
         }
+
+        return false;
+    }
+    
+    public function register(string $username, string $password) : void
+    {
+        
+        $user = new User();
+        $user->setEmail($email);
+
+        $user->setPassword($password);
+
+        $repository->save($user);
+    }
 }

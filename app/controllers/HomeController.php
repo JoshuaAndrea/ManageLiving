@@ -11,13 +11,4 @@ class HomeController
     {
         require __DIR__ . '/../views/home/housesearch.php';
     }
-
-    public function articles() : void
-    {
-        require("../repository/ArticleRepository.php");
-        $repository = new ArticleRepository();
-        $articles = $repository->getAll();
-
-        require("../views/index.php");
-    }
 }

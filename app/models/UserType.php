@@ -2,6 +2,6 @@
 
 enum UserType
 {
-    case Admin = 1;
-    case Employee = 2;
+    case Admin;
+    case Employee;
 }
