@@ -12,29 +12,28 @@ class UserService{
         $this->repository = new UserRepository();
     }
     
-    public function login(string $email, string $password) : User
+    public function verifyLogin($email, $password) : User
     {
-        $user = $repository->getByEmail($email);
+        $user = $this->repository->getByEmail($email);
 
         if($user == null){
-            return false;
+            return null;
         }
 
-        if($user->getPassword() == $password){
-            return true;
+        if($user->getHash() == $password){
+            return $user;
         }
 
-        return false;
+        return null;
     }
     
-    public function register(string $username, string $password) : void
+    public function createNewUser(string $username, string $firstName, string $lastName, string $password) : void
     {
-        
         $user = new User();
-        $user->setEmail($email);
+        $user->setUsername($username,);
 
         $user->setPassword($password);
 
-        $repository->save($user);
+        $this->repository->save($user);
     }
 }

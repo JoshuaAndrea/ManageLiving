@@ -1,6 +1,5 @@
 <?php
 include __DIR__ . '/../header.php';
-$error = "";
 ?>
 
 <form method="post">
@@ -19,7 +18,7 @@ $error = "";
                             <label for="password" class="form-label">Password</label>
                             <input type="password" class="form-control" id="password" name="password">
                         </div>
-                        <button name="login" type="submit" class="btn btn-primary">Login</button>
+                        <button id="loginButton" name="loginRequest" type="submit" class="btn btn-primary">Login</button>
                         <label class="m-2 text-danger"><?php echo $error?></label>
                     </form>
                 </div>
@@ -28,6 +27,8 @@ $error = "";
     </div>
 </div>
 </form>
+
+<script src = "js/LoginForm"></script>
 
 <?php
 include __DIR__ . '/../footer.php';

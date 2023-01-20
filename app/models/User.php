@@ -1,13 +1,73 @@
 <?php
-require_once __DIR__ . '/../models/UserType.php';
 
 class User
 {
-    private int $id;
-    private string $username;
+    private int $userId;
+    private string $email;
     private string $firstName;
     private string $lastName;
-    private UserType $userType;
-    private string $salt;
-    private string $hash;
+    private string $hashPassword;
+    private string $userType;
+
+    public function getId() : int
+    {
+        return $this->userId;
+    }
+
+    public function setId(int $id) : void
+    {
+        $this->userId = $id;
+    }
+
+    public function getEmail() : string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email) : void
+    {
+        $this->email = $email;
+    }
+
+    public function getFirstName() : string
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName(string $firstName) : void
+    {
+        $this->firstName = $firstName;
+    }
+
+    public function getLastName() : string
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName(string $lastName) : void
+    {
+        $this->lastName = $lastName;
+    }
+
+
+    public function getHash() : string
+    {
+        return $this->hashPassword;
+    }
+
+    public function setHash(string $hash) : void
+    {
+        $this->hashPassword = $hash;
+    }
+
+    public function getUserType() : string
+    {
+        return $this->userType;
+    }
+
+    public function setUserType(string $userType) : void
+    {
+        $this->userType = $userType;
+    }
+
 }

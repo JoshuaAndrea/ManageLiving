@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../repositories/Repository.php';
 class AddressRepository extends Repository{
     
-    public function getAll() : array{
+    public function getAll(){
 
         require_once("../models/Address.php");
 
@@ -16,7 +16,7 @@ class AddressRepository extends Repository{
         return $result;
     }
 
-    public function getById($id) : Address{
+    public function getById($id) : ?Address{
 
         require_once("../models/Address.php");
 
@@ -28,29 +28,50 @@ class AddressRepository extends Repository{
 
         $result = $stmt->fetch();
 
+        if(is_bool($result))
+        return null;
+    else
         return $result;
     }
 
-    public function getByPostcodeAndHouseNumber($postcode, $housenumber, $extension) : Address{
+    public function getByPostcodeAndHouseNumber($postcode, $housenumber) : ?Address{
             
-            require_once("../models/Address.php");
-            if($extension == null)
-            {
-                $query = "SELECT * FROM address WHERE postcode = :postcode AND housenumber = :housenumber";
-            }
-            else
-            {
-                $query = "SELECT * FROM address WHERE postcode = :postcode AND housenumber = :housenumber AND extension = :extension";
-            }      
-            $stmt = $this->connection->prepare($query);
-            $stmt->bindParam(":postcode", $postcode);
-            $stmt->bindParam(":housenumber", $housenumber);
-            $stmt->bindParam(":extension", $extension);
-            $stmt->execute();
-            $stmt->setFetchMode(PDO::FETCH_CLASS, 'Address');
-    
-            $result = $stmt->fetch();
-    
+        require_once("../models/Address.php");
+        
+        $query = "SELECT * FROM address WHERE postcode = :postcode AND housenumber = :housenumber";
+        
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindParam(":postcode", $postcode);
+        $stmt->bindParam(":housenumber", $housenumber);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Address');
+
+        $result = $stmt->fetch();
+
+        if(is_bool($result))
+            return null;
+        else
             return $result;
     }
+
+   public function getByPostcodeAndHouseNumberWithExtension($postcode, $housenumber, $extension) : ?Address{
+    
+        require_once("../models/Address.php");
+        
+        $query = "SELECT * FROM address WHERE postcode = :postcode AND housenumber = :housenumber AND extension = :extension";
+
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindParam(":postcode", $postcode);
+        $stmt->bindParam(":housenumber", $housenumber);
+        $stmt->bindParam(":extension", $extension);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Address');
+
+        $result = $stmt->fetch();
+
+        if(is_bool($result))
+            return null;
+        else
+            return $result;
+   }
 }

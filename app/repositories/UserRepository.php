@@ -4,7 +4,7 @@ require_once __DIR__ . '/../repositories/Repository.php';
 
 class UserRepository extends Repository{
 
-    public function getByEmail() : User
+    public function getByEmail($email) : User
     {
         
     }
