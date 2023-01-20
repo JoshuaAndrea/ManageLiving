@@ -47,7 +47,7 @@ class ContactMomentService{
     }
 
     public function getUnresolvedContactMoments(){
-        return $this->contactMomentRepository->getUnresolvedContactMoments();
+        return $this->contactMomentRepository->getAllUnresolvedContactMoments();
     }
 
     public function insertContactMoment($contactMoment) : bool{

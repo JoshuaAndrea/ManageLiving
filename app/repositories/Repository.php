@@ -1,15 +1,15 @@
 <?php
 class Repository
 {
-    protected $connection;
+    protected $pdo;
 
     public function __construct()
     {
         require_once("../config/dbconfig.php");
 
-        try 
+        try
         {
-            $this->connection = new PDO("mysql:host=$db_host;dbname=$db_name", $db_username, $db_password);
+            $this->pdo = new PDO("mysql:host=$db_host;dbname=$db_name", $db_username, $db_password);
         } 
         catch (PDOException $ex)
         {

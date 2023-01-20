@@ -9,7 +9,7 @@ class ContactMomentRepository extends Repository{
         try {
             $query = "INSERT INTO `contactMoment` (`contactMomentId`, `datetime`, `contactType`, `title`, `message`, `isResolved`, `addressId`) VALUES (NULL, :datetime, :contactType, :title, :message, :isResolved, :addressId)";
         
-            $stmt = $this->connection->prepare($query);
+            $stmt = $this->pdo->prepare($query);
 
             $date = $contactMoment->getDatetime();
             $contactType = $contactMoment->getContactType();
@@ -27,7 +27,29 @@ class ContactMomentRepository extends Repository{
             $stmt->execute();
         }
         catch (PDOException $e) {
-            throw $e;
+            throw new DatabaseException("PDO Exception: " . $e->getMessage());
+        }
+        catch(Exception $ex){
+            throw new DatabaseException($ex->getMessage());
+        }
+    }
+
+    public function getAllUnresolvedContactMoments(){
+        try {
+            $query = "SELECT * FROM `contactMoment` WHERE `isResolved` = 0";
+            $stmt = $this->pdo->prepare($query);
+
+            $stmt->execute();
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'ContactMoment');
+
+            $result = $stmt->fetchAll();
+            return $result;
+        }
+        catch (PDOException $e) {
+            throw new DatabaseException("PDO Exception: " . $e->getMessage());
+        }
+        catch(Exception $ex){
+            throw new DatabaseException($ex->getMessage());
         }
     }
 }

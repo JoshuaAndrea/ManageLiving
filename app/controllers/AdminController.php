@@ -7,22 +7,37 @@ require_once __DIR__ . '/../services/ContactMomentService.php';
 
 class AdminController
 {
-    public function createUser() : void
+    public function mainPanel() : void
     {
-        require __DIR__ . '/../views/admin/createUser.php';
-        $this->insertUser();
+        require __DIR__ . '/../views/admin/mainPanel.php';
     }
 
-    public function insertUser(){
-        if(SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['insertUser'])){
-            $firstName = htmlspecialchars($_POST['firstName']);
-            $lastName = htmlspecialchars($_POST['lastName']);
-            $password = htmlspecialchars($_POST['password']);
-            $email = htmlspecialchars($_POST['email']);
-            $userType = htmlspecialchars($_POST['role']);
+    public function manageTenants() : void
+    {
+        require __DIR__ . '/../views/admin/manageTenants.php';
+    }
+    
+    public function createUserView() : void
+    {
+        require __DIR__ . '/../views/admin/createUser.php';
 
-            $userService = new UserService();
-            $userService->createNewUser($firstName, $lastName, $email, $password);
+        try {
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["createUser"])) {
+                //Sanitise input
+                $firstName = htmlspecialchars($_POST['firstName']);
+                $lastName = htmlspecialchars($_POST['lastName']);
+                $password = htmlspecialchars($_POST['password']);
+                $email = htmlspecialchars($_POST['email']);
+                $userType = htmlspecialchars($_POST['userType']);
+
+                $userService = new UserService();
+                $userService->createNewUser($email, $firstName, $lastName, $password, $userType);
+
+                echo "<script>alert('User successfully created.'); location.href=''</script>";
+            }
+        }
+        catch(Exception $ex){
+            echo $ex->getMessage();
         }
     }
 }

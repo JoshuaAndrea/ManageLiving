@@ -1,10 +1,11 @@
-var firstNameField = document.getElementById("firstNameField");
-var lastNameField = document.getElementById("lastNameField");
-var emailField = document.getElementById("emailField");
-var phoneField = document.getElementById("phoneField");
-var reasonDropdown = document.getElementById("reasonDropdown");
-var messageBox = document.getElementById("messageBox");
-var submitButton = document.getElementById("submitButton");
+const firstNameField = document.getElementById("firstNameField");
+const lastNameField = document.getElementById("lastNameField");
+const emailField = document.getElementById("emailField");
+const phoneField = document.getElementById("phoneField");
+const reasonDropdown = document.getElementById("reasonDropdown");
+const messageBox = document.getElementById("messageBox");
+const submitButton = document.getElementById("submitButton");
+const addressText = document.getElementById("address");
 
 var fetchedAddress;
 
@@ -23,6 +24,7 @@ function checkAddress() //Will take postcode, housenumber, extension input and r
         return;
     }
     else{
+        //Check if housenumber is integer
         housenumber = parseInt(housenumber);
 
         if (isNaN(housenumber)){
@@ -36,8 +38,7 @@ function checkAddress() //Will take postcode, housenumber, extension input and r
 }
 
 function checkAddressRequest(){
-    const addressText = document.getElementById("address");
-
+    
     //Create data obj
     const data = {
         postcode: document.getElementById("postCodeField").value,
@@ -55,10 +56,9 @@ function checkAddressRequest(){
     .then(data => {
         if (data.error_message != null){ 
             addressText.style.color = "red";
-            addressText.innerHTML = data.error_message;
+            addressText.innerHTML = "Address not found";
             disableForm();
         }
-        //Else store data in address object and display address, enable form
         else{
             fetchedAddress = data;
             addressText.style.color = "green";
@@ -102,7 +102,7 @@ function postContact(){
     })
 }
 
-//If there's time I'll check if email is valid
+//If there's time I'll check if email input is a valid email
 function checkEmailInput(){
     
 }

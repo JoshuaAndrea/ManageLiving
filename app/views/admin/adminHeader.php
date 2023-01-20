@@ -19,16 +19,10 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
-          <a class="nav-link" href="/tenant/contactform">Tenants</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/home/login">Employees</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/home/housesearch">House Searching</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="/admin/createUser">Create User</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/manageTenants">Manage Tenants</a>
         </li>
       </ul>     
     </div>

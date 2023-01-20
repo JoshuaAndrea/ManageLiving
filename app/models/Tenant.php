@@ -16,12 +16,12 @@ class Tenant
 
     public function getId() : int
     {
-        return $this->id;
+        return $this->tenantId;
     }
 
     public function setId(int $id) : void
     {
-        $this->id = $id;
+        $this->tenantId = $id;
     }
 
     public function getFirstName() : string

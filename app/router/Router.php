@@ -24,13 +24,21 @@ class Router{
                 $controller = new HomeController();
                 $controller->login();
                 break;
-            case "/tenant/main":
+            case "/tenant/contactform":
                 $controller = new TenantController();
                 $controller->main();
                 break;
+            case "/admin":
+                $controller = new AdminController();
+                $controller->mainPanel();
+                break;
             case "/admin/createUser":
                 $controller = new AdminController();
-                $controller->createUser();
+                $controller->createUserView();
+                break;
+            case "/employee":
+                $controller = new EmployeeController();
+                $controller->portal();
                 break;
             case str_contains($uri, "/api/"):
                 $controller = new APIController();

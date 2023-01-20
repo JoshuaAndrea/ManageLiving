@@ -23,25 +23,30 @@ class HomeController
 
     public function login() : void
     {
+        session_start();
         require __DIR__ . '/../views/home/login.php';
-        $this->verifyLogin();
-    }
-
-    public function verifyLogin() : void
-    {
+        
         if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['loginRequest']))
         {
             $email = $_POST['email'];
             $password = $_POST['password'];
 
-            $user = $this->userService->verifyLogin($email, $password);
+            $user = $this->userService->verifyUser($email, $password);
 
             if ($user == null) {
+                echo "<script>alert('Combination of email and password incorrect!'); location.href='';</script>";
                 $this->login();
             } 
             else {
                 $_SESSION['user'] = $user;
-                header('Location: /employee/main');
+                echo "<script>alert('Login successful!');;</script>";
+            }
+
+            if($user->getUserType() == 'Employee'){
+                echo "<script>location.href='/employee';</script>";
+            }
+            else if($user->getUserType() == 'Admin'){
+                echo "<script>location.href='/admin';</script>";
             }
         }
     }

@@ -12,28 +12,47 @@ class UserService{
         $this->repository = new UserRepository();
     }
     
-    public function verifyLogin($email, $password) : User
+    public function verifyUser($email, $password) : User
     {
-        $user = $this->repository->getByEmail($email);
+        try {
+            $user = $this->repository->getByEmail($email);
 
-        if($user == null){
+            if($user == null){
+                return null;
+            }
+
+            if(password_verify($password, $user->getHash())){
+                return $user;
+            }
+
             return null;
         }
-
-        if($user->getHash() == $password){
-            return $user;
+        catch(Exception $ex){
+            throw ($ex);
         }
-
-        return null;
     }
     
-    public function createNewUser(string $username, string $firstName, string $lastName, string $password) : void
+    public function createNewUser(string $email, string $firstName, string $lastName, string $password, string $usertype) : void
     {
-        $user = new User();
-        $user->setUsername($username,);
+        try
+        {
+            //Create user object
+            $user = new User();
+            $user->setEmail($email);
+            $user->setFirstName($firstName);
+            $user->setLastName($lastName);
+            $user->setUserType($usertype);
 
-        $user->setPassword($password);
+            //Hash password
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            $user->setHash($hashedPassword);
 
-        $this->repository->save($user);
+            //Pass to repository
+            $this->repository->insertUser($user);
+        }
+        catch(Exception $ex)
+        {
+            throw ($ex);
+        }
     }
 }
