@@ -11,6 +11,7 @@ $tenants = $tenantService->getAllTenants();
 <div class="form-group">
     <label for="tenantSelect">Select Tenant</label>
     <select id="tenantSelect" class="form-control" onchange = updateTenantForm()>
+    <option value="0" disabled selected>Select a tenant</option>
         <?php
         foreach ($tenants as $tenant) {
             $id = $tenant->getId();
@@ -52,9 +53,9 @@ $tenants = $tenantService->getAllTenants();
     <br>
 
     <div class="form-group">
-        <button id="updateTenantBtn" type="button" class="btn btn-primary" onclick=updateTenant()>Update Selected Tenant</button>
-        <button id="createTenantBtn" type="button" class="btn btn-danger" onclick=deleteTenant()>Delete Selected Tenant</button>
-        <button id="deleteTenantBtn" type="button" class="btn btn-success" onclick=createTenant()>Create New Tenant</button>
+        <button id="updateTenantBtn" type="button" class="btn btn-primary" onclick=updateTenant() disabled>Update Selected Tenant</button>
+        <button id="deleteTenantBtn" type="button" class="btn btn-danger" onclick=deleteTenant() disabled>Delete Selected Tenant</button>
+        <button id="createTenantBtn" type="button" class="btn btn-success" onclick=createTenant()>Create New Tenant</button>
     </div>
 </form>
 

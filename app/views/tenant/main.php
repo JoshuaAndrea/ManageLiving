@@ -10,13 +10,13 @@ include __DIR__ . '/../header.php';
 <form> 
 <div class="form-group">
   <label for="postCodeField">Postcode</label>
-  <input type="post-code" name='postcode' class="form-control" id="postCodeField" placeholder="1234AA" onchange=checkAddress()>
+  <input type="post-code" name='postcode' class="form-control" id="postCodeField" placeholder="1234AA" oninput=checkAddress()>
 
   <label for="houseNumberField">House Number</label>
-  <input type="house-number" class="form-control" id="houseNumberField" placeholder="1" onchange=checkAddress()>
+  <input type="house-number" class="form-control" id="houseNumberField" placeholder="1" oninput=checkAddress()>
   
   <label for="houseNumberExtensionField">House Number Extension</label>
-  <input type="house-number-extension" class="form-control" id="houseNumberExtensionField" placeholder="A" onchange=checkAddress()>
+  <input type="house-number-extension" class="form-control" id="houseNumberExtensionField" placeholder="A" oninput=checkAddress()>
 </div>
 <br>
 <p>

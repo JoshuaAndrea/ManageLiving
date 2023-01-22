@@ -52,7 +52,7 @@ class Address implements JsonSerializable
         $this->housenumber = $housenumber;
     }
 
-    public function getExtension() : string
+    public function getExtension() : ?string
     {
         return $this->extension;
     }
@@ -82,7 +82,7 @@ class Address implements JsonSerializable
         $this->city = $city;
     }
 
-    public function getTenantId() : int
+    public function getTenantId() : ?int
     {
         return $this->tenantId;
     }

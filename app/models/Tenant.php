@@ -8,6 +8,7 @@ class Tenant implements JsonSerializable
     private string $email;
     private string $phoneNumber;
     private string $dateOfBirth;
+    private ?int $addressId;
 
     public function jsonSerialize() : mixed{
         return [
@@ -16,7 +17,8 @@ class Tenant implements JsonSerializable
             'lastName' => $this->lastName,
             'email' => $this->email,
             'phoneNumber' => $this->phoneNumber,
-            'dateOfBirth' => $this->dateOfBirth
+            'dateOfBirth' => $this->dateOfBirth,
+            'addressId' => $this->addressId
         ];
     }
 
@@ -80,6 +82,14 @@ class Tenant implements JsonSerializable
         $this->dateOfBirth = $dateOfBirth;
     }
 
+    public function getAddressId() : ?int
+    {
+        return $this->addressId;
+    }
 
+    public function setAddressId(?int $addressId) : void
+    {
+        $this->addressId = $addressId;
+    }
 }
 

@@ -4,7 +4,7 @@ require_once __DIR__ . '/../services/UserService.php';
 
 class HomeController
 {
-    private UserService $userService;
+    private $userService;
 
     public function __construct()
     {
@@ -32,21 +32,24 @@ class HomeController
         
         if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['loginRequest']))
         {
-            
-
             $email = $_POST['email'];
             $password = $_POST['password'];
+
+            //Sanitise input
+            $email = htmlspecialchars($email);
+            $password = htmlspecialchars($password);
 
             $user = $this->userService->verifyUser($email, $password);
 
             if ($user == null) {
                 echo "<script>alert('Combination of email and password incorrect!');</script>";
-            } 
+                return;
+            }
             else {
-                
+                //Store user in session
                 $_SESSION['user'] = $user;
                 
-                echo "<script>alert('Login successful! Welcome, " . $user->getFirstname() . " " . $user->getLastName() . "');</script>";
+                echo "<script>alert('Login successful! Welcome, " . $user->getFirstname() . ".');</script>";
             }
 
             if($user->getUserType() == 'Employee'){

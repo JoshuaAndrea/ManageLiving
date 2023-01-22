@@ -9,24 +9,15 @@ class AddressService{
         $this->addressRepository = new AddressRepository();
     }
 
-    public function insertOne($address){
-        $this->addressRepository->insertOne($address);
-    }
-
-    public function update($address){
-        $this->addressRepository->update($address);
-    }
-
-    public function delete($id){
-        $this->addressRepository->delete($id);
-    }
-
-    public function getAll(){
-        return $this->addressRepository->getAll();
+    public function getAll() : array{
+        
+        $addresses = $this->addressRepository->getAll();
+        arsort($addresses);
+        return $addresses;
     }
 
     public function getById($id){
-        return $this->addressRepository->getOne($id);
+        return $this->addressRepository->getById($id);
     }
 
     public function getByPostcodeAndHouseNumber($postcode, $housenumber, $extension) : ?Address{

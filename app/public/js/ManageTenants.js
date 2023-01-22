@@ -1,13 +1,26 @@
+//Dropdown
 const selectedTenantField = document.getElementById("tenantSelect");
+
+//Form fields
 const firstNameField = document.getElementById("firstNameField");
 const lastNameField = document.getElementById("lastNameField");
 const emailField = document.getElementById("emailField");
 const phoneField = document.getElementById("phoneField");
 const dateOfBirthField = document.getElementById("dateOfBirthField");
 
+//Buttons
+const updateTenantButton = document.getElementById("updateTenantBtn");
+const deleteTenantButton = document.getElementById("deleteTenantBtn");
+const createTenantButton = document.getElementById("createTenantBtn");
 
 function updateTenantForm() //Update tenant form on dropdown change
 {
+    //First change enables buttons
+    if(selectedTenantField.value != '0'){
+        enableButtons();
+    }
+    
+    
     //Fetch id from dropdown
     const data = {
         tenantId: selectedTenantField.value
@@ -125,4 +138,11 @@ function createTenant()
             }
         });
     }
+}
+
+function enableButtons()
+{
+    //Enable buttons
+    updateTenantButton.disabled = false;
+    deleteTenantButton.disabled = false;
 }

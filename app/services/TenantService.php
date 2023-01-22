@@ -13,6 +13,10 @@ class TenantService{
         return $this->tenantRepository->getTenantById($id);
     }
 
+    public function getTenantByAddressId(int $id) : ?Tenant{
+        return $this->tenantRepository->getTenantByAddressId($id);
+    }
+
     public function getAllTenants() : array{
         return $this->tenantRepository->getAllTenants();
     }

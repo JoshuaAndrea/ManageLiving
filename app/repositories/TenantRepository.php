@@ -53,6 +53,33 @@ class TenantRepository extends Repository{
         }
     }
 
+    public function getTenantByAddressId($id){
+        try 
+        {
+            $query = "SELECT * FROM tenant WHERE addressId = :id";
+            $stmt = $this->pdo->prepare($query);
+
+            $stmt->bindValue(":id", $id);
+            $stmt->execute();
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'Tenant');
+
+            $result = $stmt->fetch();
+
+            if (is_bool($result))
+                return null;
+            else
+                return $result;
+        }
+        catch(PDOException $ex)
+        {
+            throw new DatabaseException("PDO Exception: " . $ex->getMessage());
+        }
+        catch(Exception $ex)
+        {
+            throw new DatabaseException($ex->getMessage());
+        }
+    }
+
     public function insertTenant(Tenant $tenant) : void
     {
         try

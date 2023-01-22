@@ -1,12 +1,18 @@
+//Form fields
 const firstNameField = document.getElementById("firstNameField");
 const lastNameField = document.getElementById("lastNameField");
 const emailField = document.getElementById("emailField");
 const phoneField = document.getElementById("phoneField");
 const reasonDropdown = document.getElementById("reasonDropdown");
 const messageBox = document.getElementById("messageBox");
+
+//Button
 const submitButton = document.getElementById("submitButton");
+
+//Generated address text
 const addressText = document.getElementById("address");
 
+//For storing address data
 var fetchedAddress;
 
 function checkAddress() //Will take postcode, housenumber, extension input and retrieve an address from db through api

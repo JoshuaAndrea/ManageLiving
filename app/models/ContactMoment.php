@@ -10,20 +10,9 @@ class ContactMoment implements JsonSerializable
     private bool $isResolved;
     private int $addressId;
 
-    public function withAttr(int $contactMomentid, string $datetime, int $contactType, string $title, string $message, bool $isResolved, int $addressId)
-    {
-        $this->contactMomentId = $contactMomentid;
-        $this->datetime = $datetime;
-        $this->contactType = $contactType;
-        $this->title = $title;
-        $this->message = $message;
-        $this->isResolved = $isResolved;
-        $this->addressId = $addressId;
-    }
-
     public function jsonSerialize() : mixed{
         return [
-            'id' => $this->contactMomentId,
+            'contactMomentId' => $this->contactMomentId,
             'datetime' => $this->datetime,
             'contactType' => $this->contactType,
             'title' => $this->title,

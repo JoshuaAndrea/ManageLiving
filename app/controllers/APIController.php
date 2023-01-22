@@ -7,6 +7,10 @@ class APIController
         try{
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $data = json_decode(file_get_contents("php://input"));
+
+                if($data == null){
+                    throw new Exception("No data received.");
+                }
     
                 switch ($uri) {
                     case "/api/check-address":
@@ -30,13 +34,20 @@ class APIController
                     case "/api/logout":
                         $this->logout();
                         break;
+                    case "/api/get-tenant-from-address":
+                        $this->getTenantByAddressId($data);
+                        break;
+                    case "/api/get-contactmoments-from-address":
+                        $this->getContactMomentsByAddressId($data);
+                        break;
                     default:
-                        $this->sendErrorMessage("Invalid URI");
+                        $this->sendErrorMessage("Invalid API Request");
                         break;
                 }
             }
         }
-        catch(Exception $ex){
+        catch(Exception $ex)
+        {
             $this->sendErrorMessage($ex->getMessage());
         }
     }
@@ -47,11 +58,6 @@ class APIController
         try {
             require_once(__DIR__ . '/../services/AddressService.php');
             $addressService = new AddressService();
-
-            //Null check for data obj (is prevented in js, but just in case)
-            if ($data == null) {
-                throw new Exception("No data received.");
-            }
 
             //Check for nulls before sanitising input
             if (isset($data->postcode)) {
@@ -86,12 +92,8 @@ class APIController
         $contactMomentService = new ContactMomentService();
 
         try {
-            //Return error if data is null
-            if ($data == null) {
-                throw new Exception("No data received.");
-            }
             //Return error if not all data is received, nothing should be null
-            else if (
+            if (
                 !isset($data->firstName) || !isset($data->lastName) || !isset($data->email) || !isset($data->phoneNumber)
                 || !isset($data->reason) || !isset($data->message) || !isset($data->addressId)
             ) {
@@ -122,10 +124,7 @@ class APIController
             require_once(__DIR__ . '/../services/TenantService.php');
             $tenantService = new TenantService();
 
-            if ($data == null) {
-                throw new Exception("No data received.");
-            }
-            else if (!isset($data->tenantId)) {
+            if (!isset($data->tenantId)) {
                 throw new Exception("No ID received.");
             }
             //Sanitise data
@@ -146,12 +145,8 @@ class APIController
         $tenantService = new TenantService();
 
         try {
-            //Return error if data is null
-            if ($data == null) {
-                throw new Exception("No data received.");
-            }
-            //Return error if not all data is received, nothing should be null
-            else if (!isset($data->tenantId) || !isset($data->firstName) || !isset($data->lastName) || 
+            
+            if (!isset($data->tenantId) || !isset($data->firstName) || !isset($data->lastName) || 
                      !isset($data->email) || !isset($data->phoneNumber) || !isset($data->dateOfBirth))
             {
                 throw new Exception("Not all data received.");
@@ -180,12 +175,11 @@ class APIController
         $tenantService = new TenantService();
 
         try {
-            //Return error if data is null
-            if ($data == null) {
-                throw new Exception("No data received.");
+            //Sanitise data and try to delete tenant
+            if (!isset($data->tenantId)) {
+                throw new Exception("No Tenant ID received.");
             }
 
-            //Sanitise data and try to delete tenant
             $data->tenantId = htmlspecialchars($data->tenantId);
 
             $tenantService->deleteTenant($data->tenantId);
@@ -228,9 +222,6 @@ class APIController
         catch (Exception $ex) {
             $this->sendErrorMessage($ex->getMessage());
         }
-        catch (Exception $ex) {
-            $this->sendErrorMessage($ex->getMessage());
-        }
     }
 
     private function logout(){
@@ -240,6 +231,66 @@ class APIController
             $this->sendSuccessMessage("Logged out successfully!");
         }
         catch(Exception $ex){
+            $this->sendErrorMessage($ex->getMessage());
+        }
+    }
+
+    private function getTenantByAddressId($data){
+        try{
+            require_once(__DIR__ . '/../services/TenantService.php');
+            $tenantService = new TenantService();
+
+            if ($data == null) {
+                throw new Exception("No data received.");
+            }
+            else if (!isset($data->addressId)) {
+                throw new Exception("No Address ID received.");
+            }
+
+            //Sanitise data
+            $addressId = htmlspecialchars($data->addressId);
+
+            $tenant = $tenantService->getTenantByAddressId($addressId);
+
+            if($tenant == null){
+                throw new Exception("No tenant found.");
+            }
+            else{
+                header('Content-Type: application/json');
+                echo json_encode($tenant);
+            }
+        }
+        catch(Exception $ex){
+            $this->sendErrorMessage($ex->getMessage());
+        }
+    }
+
+    private function getContactMomentsByAddressId($data)
+    {
+        try
+        {
+            require_once(__DIR__ . '/../services/ContactMomentService.php');
+            $contactMomentService = new ContactMomentService();
+
+            if (!isset($data->addressId)) {
+                throw new Exception("No Address ID received.");
+            }
+
+            //Sanitise input
+            $addressId = htmlspecialchars($data->addressId);
+
+            $contactMoments = $contactMomentService->getAllForAddress($addressId);
+
+            if($contactMoments == null){
+                throw new Exception("No contact moments found.");
+            }
+            else{
+                header('Content-Type: application/json');
+                echo json_encode($contactMoments);
+            }
+        }
+        catch(Exception $ex)
+        {
             $this->sendErrorMessage($ex->getMessage());
         }
     }

@@ -5,9 +5,10 @@ require_once __DIR__ . '/../models/Exceptions/DatabaseException.php';
 
 class ContactMomentRepository extends Repository{
     
-    public function insertOne(ContactMoment $contactMoment){
-
-        try {
+    public function insertOne(ContactMoment $contactMoment)
+    {
+        try 
+        {
             $query = "INSERT INTO `contactMoment` (`datetime`, `contactType`, `title`, `message`, `isResolved`, `addressId`) VALUES (:datetime, :contactType, :title, :message, :isResolved, :addressId)";
         
             $stmt = $this->pdo->prepare($query);
@@ -27,16 +28,20 @@ class ContactMomentRepository extends Repository{
             $stmt->bindValue(":addressId", $addressId);
             $stmt->execute();
         }
-        catch (PDOException $e) {
+        catch (PDOException $e) 
+        {
             throw new DatabaseException("PDO Exception: " . $e->getMessage());
         }
-        catch(Exception $ex){
+        catch(Exception $ex)
+        {
             throw new DatabaseException($ex->getMessage());
         }
     }
 
-    public function getAllUnresolvedContactMoments(){
-        try {
+    public function getAllUnresolvedContactMoments()
+    {
+        try 
+        {
             $query = "SELECT * FROM `contactMoment` WHERE `isResolved` = 0";
             $stmt = $this->pdo->prepare($query);
 
@@ -54,8 +59,9 @@ class ContactMomentRepository extends Repository{
         }
     }
 
-    public function getAllForAddress($addressId){
-        try 
+    public function getAllForAddress($addressId)
+    {
+        try
         {
             $query = "SELECT * FROM contactMoment WHERE addressId = :addressId";
             $stmt = $this->pdo->prepare($query);
@@ -65,6 +71,7 @@ class ContactMomentRepository extends Repository{
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'ContactMoment');
             $result = $stmt->fetchAll();
+
             return $result;
         }
         catch(PDOException $ex)
@@ -77,8 +84,10 @@ class ContactMomentRepository extends Repository{
         }
     }
 
-    public function update($id){
-        try {
+    public function update($id)
+    {
+        try 
+        {
             $query = "UPDATE `contactMoment` SET `isResolved` = 1 WHERE `contactMomentId` = :id";
             $stmt = $this->pdo->prepare($query);
 
@@ -86,16 +95,20 @@ class ContactMomentRepository extends Repository{
 
             $stmt->execute();
         }
-        catch (PDOException $e) {
+        catch (PDOException $e) 
+        {
             throw new DatabaseException("PDO Exception: " . $e->getMessage());
         }
-        catch(Exception $ex){
+        catch(Exception $ex)
+        {
             throw new DatabaseException($ex->getMessage());
         }
     }
 
-    public function delete($id){
-        try {
+    public function delete($id)
+    {
+        try 
+        {
             $query = "DELETE FROM `contactMoment` WHERE `contactMomentId` = :id";
             $stmt = $this->pdo->prepare($query);
 
@@ -103,10 +116,12 @@ class ContactMomentRepository extends Repository{
 
             $stmt->execute();
         }
-        catch (PDOException $e) {
+        catch (PDOException $e) 
+        {
             throw new DatabaseException("PDO Exception: " . $e->getMessage());
         }
-        catch(Exception $ex){
+        catch(Exception $ex)
+        {
             throw new DatabaseException($ex->getMessage());
         }
     }

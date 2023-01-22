@@ -26,7 +26,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item">
-              <a class="nav-link" href="/employee">Employee Portal</a>
+              <a class="nav-link" href="/employee">Main Portal</a>
             </li>
           </ul>
           <div>
