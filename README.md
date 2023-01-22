@@ -17,6 +17,8 @@ Admins - supervisors at Manage Living, use the login portal to gain access to ad
 - Regular employee:   Michael@ManageLiving.nl     PW: password1
 - Admin:              Mark@ManageLiving.nl        PW: password1
 
-## Address Details
-Most suitable address for testing: 
+## Misc. Useful Information
+You will need addresses to test the Tenant part. The most useful one is: 
 Poelenburg 254, 1504NL Zaandam
+
+Others can be found through the Employee part of the application.
