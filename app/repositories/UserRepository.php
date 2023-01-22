@@ -1,10 +1,11 @@
 <?php
 require_once __DIR__ . '/../models/User.php';
 require_once __DIR__ . '/../repositories/Repository.php';
+require_once __DIR__ . '/../models/Exceptions/DatabaseException.php';
 
 class UserRepository extends Repository{
 
-    public function getByEmail($email) : User
+    public function getByEmail($email) : ?User
     {
         try{
             $query = "SELECT * FROM user WHERE email = :email";

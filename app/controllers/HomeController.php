@@ -21,6 +21,10 @@ class HomeController
         require __DIR__ . '/../views/home/housesearch.php';
     }
 
+    public function contact(){
+        require __DIR__ . '/../views/tenant/main.php';
+    }
+
     public function login() : void
     {
         session_start();
@@ -28,18 +32,21 @@ class HomeController
         
         if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['loginRequest']))
         {
+            
+
             $email = $_POST['email'];
             $password = $_POST['password'];
 
             $user = $this->userService->verifyUser($email, $password);
 
             if ($user == null) {
-                echo "<script>alert('Combination of email and password incorrect!'); location.href='';</script>";
-                $this->login();
+                echo "<script>alert('Combination of email and password incorrect!');</script>";
             } 
             else {
+                
                 $_SESSION['user'] = $user;
-                echo "<script>alert('Login successful!');;</script>";
+                
+                echo "<script>alert('Login successful! Welcome, " . $user->getFirstname() . " " . $user->getLastName() . "');</script>";
             }
 
             if($user->getUserType() == 'Employee'){

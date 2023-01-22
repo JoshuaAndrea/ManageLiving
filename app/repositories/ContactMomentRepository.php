@@ -1,13 +1,14 @@
 <?php
 require_once __DIR__ . '/../repositories/Repository.php';
 require_once __DIR__ . '/../models/ContactMoment.php';
+require_once __DIR__ . '/../models/Exceptions/DatabaseException.php';
 
 class ContactMomentRepository extends Repository{
     
     public function insertOne(ContactMoment $contactMoment){
 
         try {
-            $query = "INSERT INTO `contactMoment` (`contactMomentId`, `datetime`, `contactType`, `title`, `message`, `isResolved`, `addressId`) VALUES (NULL, :datetime, :contactType, :title, :message, :isResolved, :addressId)";
+            $query = "INSERT INTO `contactMoment` (`datetime`, `contactType`, `title`, `message`, `isResolved`, `addressId`) VALUES (:datetime, :contactType, :title, :message, :isResolved, :addressId)";
         
             $stmt = $this->pdo->prepare($query);
 
@@ -52,4 +53,63 @@ class ContactMomentRepository extends Repository{
             throw new DatabaseException($ex->getMessage());
         }
     }
+
+    public function getAllForAddress($addressId){
+        try 
+        {
+            $query = "SELECT * FROM contactMoment WHERE addressId = :addressId";
+            $stmt = $this->pdo->prepare($query);
+
+            $stmt->bindValue(":addressId", $addressId);
+
+            $stmt->execute();
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'ContactMoment');
+            $result = $stmt->fetchAll();
+            return $result;
+        }
+        catch(PDOException $ex)
+        {
+            throw new DatabaseException("PDO Exception: " . $ex->getMessage());
+        }
+        catch(Exception $ex)
+        {
+            throw new DatabaseException($ex->getMessage());
+        }
+    }
+
+    public function update($id){
+        try {
+            $query = "UPDATE `contactMoment` SET `isResolved` = 1 WHERE `contactMomentId` = :id";
+            $stmt = $this->pdo->prepare($query);
+
+            $stmt->bindValue(":id", $id);
+
+            $stmt->execute();
+        }
+        catch (PDOException $e) {
+            throw new DatabaseException("PDO Exception: " . $e->getMessage());
+        }
+        catch(Exception $ex){
+            throw new DatabaseException($ex->getMessage());
+        }
+    }
+
+    public function delete($id){
+        try {
+            $query = "DELETE FROM `contactMoment` WHERE `contactMomentId` = :id";
+            $stmt = $this->pdo->prepare($query);
+
+            $stmt->bindValue(":id", $id);
+
+            $stmt->execute();
+        }
+        catch (PDOException $e) {
+            throw new DatabaseException("PDO Exception: " . $e->getMessage());
+        }
+        catch(Exception $ex){
+            throw new DatabaseException($ex->getMessage());
+        }
+    }
+
+    
 }

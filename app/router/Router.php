@@ -10,6 +10,8 @@ class Router{
         require_once("../controllers/AdminController.php");
         require_once("../controllers/ApiController.php");
 
+        $uri = strtolower($uri);
+
         switch($uri){
             case "/home/index":
             case "/":
@@ -25,16 +27,20 @@ class Router{
                 $controller->login();
                 break;
             case "/tenant/contactform":
-                $controller = new TenantController();
-                $controller->main();
+                $controller = new HomeController();
+                $controller->contact();
                 break;
             case "/admin":
                 $controller = new AdminController();
                 $controller->mainPanel();
                 break;
-            case "/admin/createUser":
+            case "/admin/createuser":
                 $controller = new AdminController();
                 $controller->createUserView();
+                break;
+            case "/admin/managetenants":
+                $controller = new AdminController();
+                $controller->manageTenants();
                 break;
             case "/employee":
                 $controller = new EmployeeController();

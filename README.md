@@ -1,29 +1,25 @@
-# Docker template for PHP projects
-This repository provides a starting template for PHP application development.
+### Disclaimer
+Unfortunately due to a lack of time, currently not all functionalities are implemented. 
+Implemented functionalities currently include:
+- Tenant contact form, creating contact moments.
+- Login for employee/admin, using session.
+- Full CRUD capability for tenant data in the admin view.
 
-It contains:
-* NGINX webserver
-* PHP FastCGI Process Manager with PDO MySQL support
-* MariaDB (GPL MySQL fork)
-* PHPMyAdmin
+# Manage Living Web Application
+This is a web application created for a fictional living corporation.
+Instructions are provided below for a tour of the functionalities of the application, as well as necessary login details, etc.
 
-## Installation
+## User Explanation
+The application is meant for use by 3 types of users.
 
-1. Install Docker Desktop on Windows or Mac, or Docker Engine on Linux.
-1. Clone the project
+Tenants - people who rent living space from the corporation. They do not need to log in and can use the contact form for requesting contact or repairs using their address.
 
-## Usage
+Employees - work at Manage Living, use the login portal to gain access to employee functionalities, which are limited to one panel.
 
-In a terminal, run:
-```bash
-docker-compose up
-```
+Admins - supervisors at Manage Living, use the login portal to gain access to admin functionalities, which include all CRUD capabilities.
 
-NGINX will now serve files in the app/public folder. Visit localhost in your browser to check.
-PHPMyAdmin is accessible on localhost:8080
 
-If you want to stop the containers, press Ctrl+C. 
-Or run:
-```bash
-docker-compose down
-```
+## Login Details
+
+Regular employee:   Michael@ManageLiving.nl     PW: password1
+Admin:              Mark@ManageLiving.nl        PW: password1

@@ -11,54 +11,42 @@ class ContactMomentService{
     }
 
     public function insertContactRequest($data){
-        try{
-            //If data is null, return false
-            if($data == null){
-                throw new Exception("");
-            }
+        //If data is null, return false
+        if($data == null){
+            throw new Exception("No data is received in service layer.");
+        }
 
-            //Form contactmoment from received data  
-            $contactMoment = new ContactMoment();
-            $contactMoment->setId(null);
-            $contactMoment->setDatetime(date("d-m-Y H:i"));
-            $contactMoment->setContactType("Contactform");
-            $contactMoment->setTitle($data->reason);
-            $contactMoment->setAddressId($data->addressId);
-            $contactMoment->setIsResolved(false);
-            
-            $contactMoment->setMessage($data->firstName . " " . $data->lastName . " / " . $data->phoneNumber . " / " . $data->email . " / " . $data->message);
+        //Form contactmoment from received data  
+        $contactMoment = new ContactMoment();
+        $contactMoment->setDatetime(date("d-m-Y H:i"));
+        $contactMoment->setContactType("Contactform");
+        $contactMoment->setTitle($data->reason);
+        $contactMoment->setAddressId($data->addressId);
+        $contactMoment->setIsResolved(false);
+        
+        $contactMoment->setMessage($data->message . " - " . $data->firstName . " " . $data->lastName . "//" . $data->phoneNumber . "//" . $data->email);
 
-            return $this->contactMomentRepository->insertOne($contactMoment);
-        }
-        catch(PDOException $ex){
-            throw $ex;
-        }
-        catch(Exception $ex){
-            throw new Exception("Something went wrong in the service.");
-        }
+        return $this->contactMomentRepository->insertOne($contactMoment);
+        
     }
 
-    public function getAllForAddress(int $addressId){
+    public function getAllForAddress(int $addressId) : array{
         return $this->contactMomentRepository->getAllForAddress($addressId);
-    }
-
-    public function getContactMoment($id){
-        return $this->contactMomentRepository->getContactMoment($id);
     }
 
     public function getUnresolvedContactMoments(){
         return $this->contactMomentRepository->getAllUnresolvedContactMoments();
     }
 
-    public function insertContactMoment($contactMoment) : bool{
-        return $this->contactMomentRepository->insertOne($contactMoment);
+    public function insertContactMoment($contactMoment) : void{
+        $this->contactMomentRepository->insertOne($contactMoment);
     }
 
-    public function updateContactMoment($contactMoment){
-        return $this->contactMomentRepository->update($contactMoment);
+    public function updateContactMoment($contactMoment) : void{
+        $this->contactMomentRepository->update($contactMoment);
     }
 
-    public function deleteContactMoment($id){
-        return $this->contactMomentRepository->delete($id);
+    public function deleteContactMoment($id) : void{
+        $this->contactMomentRepository->delete($id);
     }
 }

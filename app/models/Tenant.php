@@ -1,6 +1,6 @@
 <?php
 
-class Tenant
+class Tenant implements JsonSerializable
 {
     private int $tenantId;
     private string $firstName;
@@ -9,9 +9,15 @@ class Tenant
     private string $phoneNumber;
     private string $dateOfBirth;
 
-    public function __construct()
-    {
-        
+    public function jsonSerialize() : mixed{
+        return [
+            'id' => $this->tenantId,
+            'firstName' => $this->firstName,
+            'lastName' => $this->lastName,
+            'email' => $this->email,
+            'phoneNumber' => $this->phoneNumber,
+            'dateOfBirth' => $this->dateOfBirth
+        ];
     }
 
     public function getId() : int

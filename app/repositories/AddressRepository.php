@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../repositories/Repository.php';
+require_once __DIR__ . '/../models/Exceptions/DatabaseException.php';
 class AddressRepository extends Repository{
     
     public function getAll() : array{

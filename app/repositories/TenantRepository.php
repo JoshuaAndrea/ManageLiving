@@ -1,9 +1,11 @@
 <?php
 require_once __DIR__ . '/../repositories/Repository.php';
 require_once __DIR__ . '/../models/Tenant.php';
+require_once __DIR__ . '/../models/Exceptions/DatabaseException.php';
+
 class TenantRepository extends Repository{
 
-    public function getAll() : array{
+    public function getAllTenants() : array{
         try
         {
             $query = "SELECT * FROM tenant";
@@ -25,12 +27,12 @@ class TenantRepository extends Repository{
         }
     }
 
-    public function getById($id) : ?Tenant{
-
+    public function getTenantById(int $id) : ?Tenant{
         try {
-            $query = "SELECT * FROM tenant WHERE id = :id";
+            $query = "SELECT * FROM tenant WHERE tenantId = :id";
             $stmt = $this->pdo->prepare($query);
-            $stmt->bindParam(":id", $id);
+
+            $stmt->bindValue(":id", $id);
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'Tenant');
 
@@ -58,7 +60,6 @@ class TenantRepository extends Repository{
             $query = "INSERT INTO tenant (firstName, lastName, email, phoneNumber, dateOfBirth) VALUES (:firstName, :lastName, :email, :phoneNumber, :dateOfBirth)";
             $stmt = $this->pdo->prepare($query);
             
-            
             $stmt->bindValue(":firstName", $tenant->getFirstName());
             $stmt->bindValue(":lastName", $tenant->getLastName());
             $stmt->bindValue(":email", $tenant->getEmail());
@@ -69,11 +70,11 @@ class TenantRepository extends Repository{
         }
         catch(PDOException $ex)
         {
-            throw new Exception("PDO Exception: " . $ex->getMessage());
+            throw new DatabaseException("PDO Exception: " . $ex->getMessage());
         }
         catch(Exception $ex)
         {
-            throw ($ex);
+            throw new DatabaseException($ex->getMessage());
         }
     }
 
@@ -81,7 +82,7 @@ class TenantRepository extends Repository{
     {
         try
         {
-            $query = "UPDATE tenant SET firstName = :firstName, lastName = :lastName, email = :email, phoneNumber = :phoneNumber, dateOfBirth = :dateOfBirth WHERE id = :id";
+            $query = "UPDATE tenant SET firstName = :firstName, lastName = :lastName, email = :email, phoneNumber = :phoneNumber, dateOfBirth = :dateOfBirth WHERE tenantId = :id";
             $stmt = $this->pdo->prepare($query);
             
             $stmt->bindValue(":firstName", $tenant->getFirstName());
@@ -95,11 +96,11 @@ class TenantRepository extends Repository{
         }
         catch(PDOException $ex)
         {
-            throw new Exception("PDO Exception: " . $ex->getMessage());
+            throw new DatabaseException("PDO Exception: " . $ex->getMessage());
         }
         catch(Exception $ex)
         {
-            throw ($ex);
+            throw new DatabaseException($ex->getMessage());
         }
     }
 
@@ -107,7 +108,7 @@ class TenantRepository extends Repository{
     {
         try
         {
-            $query = "DELETE FROM tenant WHERE id = :id";
+            $query = "DELETE FROM tenant WHERE tenantId = :id";
             $stmt = $this->pdo->prepare($query);
             
             $stmt->bindValue(":id", $id);
@@ -116,12 +117,11 @@ class TenantRepository extends Repository{
         }
         catch(PDOException $ex)
         {
-            throw new Exception("PDO Exception: " . $ex->getMessage());
+            throw new DatabaseException("PDO Exception: " . $ex->getMessage());
         }
         catch(Exception $ex)
         {
-            throw ($ex);
+            throw new DatabaseException($ex->getMessage());
         }
     }
-    
 }

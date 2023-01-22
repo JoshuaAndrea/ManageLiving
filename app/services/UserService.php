@@ -12,7 +12,7 @@ class UserService{
         $this->repository = new UserRepository();
     }
     
-    public function verifyUser($email, $password) : User
+    public function verifyUser($email, $password) : ?User
     {
         try {
             $user = $this->repository->getByEmail($email);

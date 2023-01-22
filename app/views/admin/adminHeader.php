@@ -1,3 +1,9 @@
+<?php
+  session_start();
+  $user = $_SESSION['user'];
+  $username = $user->getFirstName() . " " . $user->getLastName();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,24 +15,28 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
- 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-  <div class="container">
-    <a class="navbar-brand" href="/">Manage Living</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav me-auto mb-2 mb-md-0">
-        <li class="nav-item">
-          <a class="nav-link" href="/admin/createUser">Create User</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/admin/manageTenants">Manage Tenants</a>
-        </li>
-      </ul>     
-    </div>
-  </div>
-</nav>
+  <script src="../js/Header.js"></script>
 
-<div class="container">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <div class="container">
+      <a class="navbar-brand">Manage Living</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/createUser">Create User</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/manageTenants">Manage Tenants</a>
+          </li>
+        </ul>
+        <div>
+          <a class="btn btn-info" onclick=logout()><?php echo $username?></a>
+        </div>  
+      </div>
+    </div>
+  </nav>
+
+    <div class="container">

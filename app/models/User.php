@@ -1,6 +1,6 @@
 <?php
 
-class User
+class User implements JsonSerializable
 {
     private int $userId;
     private string $email;
@@ -9,6 +9,17 @@ class User
     private string $hashPassword;
     private string $userType;
 
+    public function jsonSerialize() : mixed
+    {
+        return [
+            'userId' => $this->userId,
+            'email' => $this->email,
+            'firstName' => $this->firstName,
+            'lastName' => $this->lastName,
+            'hashPassword' => $this->hashPassword,
+            'userType' => $this->userType
+        ];
+    }
     public function getId() : int
     {
         return $this->userId;

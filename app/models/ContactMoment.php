@@ -2,7 +2,7 @@
 
 class ContactMoment implements JsonSerializable
 {
-    private ?int $contactMomentId;
+    private int $contactMomentId;
     private string $datetime;
     private string $contactType;
     private string $title;
