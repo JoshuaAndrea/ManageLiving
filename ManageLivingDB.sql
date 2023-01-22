@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Jan 20, 2023 at 04:06 PM
+-- Generation Time: Jan 22, 2023 at 12:51 PM
 -- Server version: 10.10.2-MariaDB-1:10.10.2+maria~ubu2204
--- PHP Version: 8.0.26
+-- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -42,7 +42,22 @@ CREATE TABLE `address` (
 --
 
 INSERT INTO `address` (`addressId`, `streetname`, `housenumber`, `extension`, `postcode`, `city`, `tenantId`) VALUES
-(3, 'Poelenburg', 254, NULL, '1504NL', 'Zaandam', 1);
+(3, 'Poelenburg', 254, NULL, '1504NL', 'Zaandam', 1),
+(4, 'Carpinistraat', 33, NULL, '5665HP', 'Geldrop', NULL),
+(5, 'Bijdorplaan', 15, NULL, '2015CE', 'Haarlem', NULL),
+(6, 'Bijdorplaan', 16, NULL, '2015CE', 'Haarlem', NULL),
+(7, 'Poelenburg', 253, NULL, '1504NL', 'Zaandam', 1),
+(8, 'Poelenburg', 252, NULL, '1504NL', 'Zaandam', 1),
+(9, 'Poelenburg', 251, NULL, '1504NL', 'Zaandam', 1),
+(10, 'Poelenburg', 250, NULL, '1504NL', 'Zaandam', 1),
+(11, 'Poelenburg', 255, NULL, '1504NL', 'Zaandam', 1),
+(12, 'Poelenburg', 256, NULL, '1504NL', 'Zaandam', 1),
+(13, 'Poelenburg', 257, NULL, '1504NL', 'Zaandam', 1),
+(14, 'Poelenburg', 258, NULL, '1504NL', 'Zaandam', 1),
+(15, 'Bijdorplaan', 17, NULL, '2015CE', 'Haarlem', NULL),
+(16, 'Carpinistraat', 32, NULL, '5665HP', 'Geldrop', NULL),
+(17, 'Carpinistraat', 31, NULL, '5665HP', 'Geldrop', NULL),
+(18, 'Carpinistraat', 30, NULL, '5665HP', 'Geldrop', NULL);
 
 -- --------------------------------------------------------
 
@@ -90,8 +105,10 @@ CREATE TABLE `tenant` (
 --
 
 INSERT INTO `tenant` (`tenantId`, `firstName`, `lastName`, `email`, `phoneNumber`, `dateOfBirth`) VALUES
-(1, 'Joshua', 'Andrea', 'joshua.andrea@hotmail.com', '06-34531077', '16-04-1998'),
-(2, 'Guyon', 'Belgiano', 'guyon.belgiano@belgian-email.com', '+32-410032017', '03-05-1988');
+(1, 'Joshua', 'Andrea', 'joshua.andrea@hotmail.com', '06-34531088', '16-04-1998'),
+(2, 'Guyon', 'Belgiano', 'guyon.belgiano@belgian-email.com', '+32-410032017', '03-05-1988'),
+(3, 'David', 'Lee', 'h.lee@naver.com', '06-12340234', '05-01-1996'),
+(7, 'John', 'Smith', 'johnsmith@gmail.com', '06-12451245', '01-04-2000');
 
 -- --------------------------------------------------------
 
@@ -153,7 +170,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `addressId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `addressId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `contactMoment`
@@ -165,7 +182,7 @@ ALTER TABLE `contactMoment`
 -- AUTO_INCREMENT for table `tenant`
 --
 ALTER TABLE `tenant`
-  MODIFY `tenantId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `tenantId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user`
