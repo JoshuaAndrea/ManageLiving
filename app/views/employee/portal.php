@@ -9,7 +9,7 @@
 
 <div class="form-group">
     <label for="addressSelect">Select Address</label>
-    <select id="addressSelect" class="form-control" onchange = updateTenantInfo()>
+    <select id="addressSelect" class="form-control" onchange = changeDropdownValue()>
         <option value="0" disabled selected>Select an address</option>
         <?php
           //Load all fetched addresses into the view
@@ -47,26 +47,11 @@
 
 <section id="contactMomentSection" style="margin-top: 6rem;">
   <h5>Contact Moments</h5>
-  
-  <div class="card mb-3" style="border-width: 2px; border-color: black;">
-    <div class="card-header" style="background-color: rgb(245, 245, 245); ">
-      <h5 class="card-title" id="contactMomentTitle">Test Contactmoment</h5>
-    </div>
-    <div class="card-body" style="background-color: rgb(245, 245, 245);">
-      <p class="card-text" id="contactMomentMessage"></p>
-    </div>
-    <div class="card-footer" style="background-color: rgb(245, 245, 245);">
-      <div class="d-inline">
-        <button type="button" class="btn btn-primary" id="contactMomentUpdateBtn" onclick=updateContactMoment() disabled>Save changes</button>
-      </div>
-      <div class="d-inline" style="margin-left: 1rem;">
-        <input type="checkbox" value="" id="resolvedCheckbox">
-        <label for="resolvedCheckbox">Resolved</label>
-      </div>
-  </div>
 </section>
 
 <script src="../js/AddressPanel.js"></script>
+
+
 
 <?php
   include __DIR__ . '/../footer.php';

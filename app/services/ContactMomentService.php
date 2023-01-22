@@ -42,8 +42,8 @@ class ContactMomentService{
         $this->contactMomentRepository->insertOne($contactMoment);
     }
 
-    public function updateContactMoment($contactMoment) : void{
-        $this->contactMomentRepository->update($contactMoment);
+    public function updateContactMoment($data) : void{
+        $this->contactMomentRepository->update($data);
     }
 
     public function deleteContactMoment($id) : void{

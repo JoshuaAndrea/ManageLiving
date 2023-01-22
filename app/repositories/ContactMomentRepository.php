@@ -84,14 +84,20 @@ class ContactMomentRepository extends Repository{
         }
     }
 
-    public function update($id)
+    public function update($data)
     {
         try 
         {
-            $query = "UPDATE `contactMoment` SET `isResolved` = 1 WHERE `contactMomentId` = :id";
+            $contactMomentId = $data->contactMomentId;
+            $message = $data->message;
+            $isResolved = $data->isResolved;
+
+            $query = "UPDATE `contactMoment` SET `message` = :message, `isResolved` = :isResolved WHERE `contactMomentId` = :contactMomentId";
             $stmt = $this->pdo->prepare($query);
 
-            $stmt->bindValue(":id", $id);
+            $stmt->bindValue(":message", $message);
+            $stmt->bindValue(":isResolved", (int)$isResolved);
+            $stmt->bindValue(":contactMomentId", $contactMomentId);
 
             $stmt->execute();
         }

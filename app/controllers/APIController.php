@@ -40,6 +40,9 @@ class APIController
                     case "/api/get-contactmoments-from-address":
                         $this->getContactMomentsByAddressId($data);
                         break;
+                    case "/api/update-contactmoment":
+                        $this->updateContactMoment($data);
+                        break;
                     default:
                         $this->sendErrorMessage("Invalid API Request");
                         break;
@@ -288,6 +291,35 @@ class APIController
                 header('Content-Type: application/json');
                 echo json_encode($contactMoments);
             }
+        }
+        catch(Exception $ex)
+        {
+            $this->sendErrorMessage($ex->getMessage());
+        }
+    }
+
+    public function updateContactMoment($data)
+    {
+        try
+        {
+            require_once(__DIR__ . '/../services/ContactMomentService.php');
+            $contactMomentService = new ContactMomentService();
+
+            if (!isset($data->contactMomentId) || !isset($data->message) || !isset($data->isResolved)){
+                throw new Exception("Not all data received.");
+            }
+
+            //Sanitise input
+            $data->contactMomentId = htmlspecialchars($data->contactMomentId);
+            $data->message = htmlspecialchars($data->message);
+            $data->isResolved = htmlspecialchars($data->isResolved);
+
+            $contactMomentService->updateContactMoment($data);
+            $this->sendSuccessMessage("Contact moment successfully updated!");
+        }
+        catch(Exception $ex)
+        {
+            $this->sendErrorMessage($ex->getMessage());
         }
         catch(Exception $ex)
         {
