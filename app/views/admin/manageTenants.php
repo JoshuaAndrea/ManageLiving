@@ -3,7 +3,7 @@ include __DIR__ . '/adminHeader.php';
 require_once('../services/TenantService.php');
 
 $tenantService = new TenantService();
-$tenants = $tenantService->getAllTenants();
+
 ?>
 
 <h2>Manage Tenants</h2>

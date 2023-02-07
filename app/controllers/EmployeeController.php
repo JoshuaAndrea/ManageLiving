@@ -2,15 +2,17 @@
 
 class EmployeeController
 {
-    
-    public function __construct()
-    {
+     private $addressService;
 
-    }
+     public function __construct()
+     {
+          $this->addressService = new AddressService();
+     }
 
-   public function portal()
-   {
-        require(__DIR__ . '/../views/employee/portal.php');
-   }
+     public function portal()
+     {
+          $addresses = $this->addressService->getAll();
+          require(__DIR__ . '/../views/employee/portal.php');
+     }
 
 }

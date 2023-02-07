@@ -1,9 +1,4 @@
 <?php
-  require_once('../services/AddressService.php');
-  //Fetch all addresses from the database
-  $addressService = new AddressService();
-  $addresses = $addressService->getAll();
-
   include __DIR__ . '/employeeHeader.php';
 ?>
 

@@ -1,5 +1,7 @@
 <?php
-require_once __DIR__ . '/../models/User.php';
+require_once __DIR__ . '/../models/Tenant.php';
+require_once 
+require_once __DIR__ . '/../services/TenantService.php';
 require_once __DIR__ . '/../services/UserService.php';
 require_once __DIR__ . '/../services/AddressService.php';
 require_once __DIR__ . '/../services/TenantService.php';
@@ -14,6 +16,8 @@ class AdminController
 
     public function manageTenants() : void
     {
+        $tenantService = new TenantService();
+        $tenants = $tenantService->getAllTenants();
         require __DIR__ . '/../views/admin/manageTenants.php';
     }
     
