@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . '/../repositories/Repository.php';
-require_once __DIR__ . '/../models/ContactMoment.php';
-require_once __DIR__ . '/../models/Exceptions/DatabaseException.php';
+require_once(__DIR__ . '/../repositories/Repository.php');
+require_once(__DIR__ . '/../models/ContactMoment.php');
+require_once(__DIR__ . '/../models/Exceptions/DatabaseException.php');
 
 class ContactMomentRepository extends Repository{
     

@@ -1,18 +1,15 @@
 <?php
+require_once __DIR__ . '/../services/AddressService.php';
+require_once __DIR__ . '/../models/Address.php';
 
 class EmployeeController
 {
-     private $addressService;
-
-     public function __construct()
-     {
-          $this->addressService = new AddressService();
-     }
-
      public function portal()
      {
-          $addresses = $this->addressService->getAll();
-          require(__DIR__ . '/../views/employee/portal.php');
+         $addressService = new AddressService();
+         
+         $addresses = $addressService->getAll();
+         require __DIR__ . '/../views/employee/portal.php';
      }
 
 }

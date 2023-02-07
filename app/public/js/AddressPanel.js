@@ -68,7 +68,7 @@ function loadContactMoments(){
     .then(response => response.json())
     .then(data => {
         if(data.error_message != null){
-            alert(data.error_message);
+            displayNoContactMoments();
         }
         else{
             //Clear contact moment section
@@ -214,4 +214,15 @@ function updateContactMoment(contactMomentId){
             loadContactMoments();
         }
     });
+}
+
+function displayNoContactMoments(){
+    contactMomentSection.innerHTML = "";
+    heading = document.createElement('h5');
+    heading.innerHTML = "Contact Moments";
+    contactMomentSection.appendChild(heading);
+            
+    message = document.createElement('p');
+    message.innerHTML = "No contact moments found for this address";
+    contactMomentSection.appendChild(message);
 }
