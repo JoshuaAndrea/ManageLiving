@@ -33,6 +33,5 @@ class AddressService{
             $extension = str_replace(" ", "", $extension);
             return $this->addressRepository->getByPostcodeAndHouseNumberWithExtension($postcode, $housenumber, $extension);
         }
-        
     }
 }

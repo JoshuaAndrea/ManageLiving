@@ -131,6 +131,4 @@ class ContactMomentRepository extends Repository{
             throw new DatabaseException($ex->getMessage());
         }
     }
-
-    
 }
