@@ -2,11 +2,6 @@
 
 class EmployeeController
 {
-    
-    public function __construct()
-    {
-
-    }
 
    public function portal()
    {
