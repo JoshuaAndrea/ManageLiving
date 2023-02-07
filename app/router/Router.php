@@ -7,7 +7,7 @@ class Router{
         require_once("../controllers/HomeController.php");
         require_once("../controllers/EmployeeController.php");
         require_once("../controllers/AdminController.php");
-        require_once("../controllers/ApiController.php");
+        require_once("../controllers/APIController.php");
 
         $uri = strtolower($uri);
 
