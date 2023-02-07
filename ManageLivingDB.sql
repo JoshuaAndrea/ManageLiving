@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Jan 22, 2023 at 10:10 PM
+-- Generation Time: Feb 07, 2023 at 06:58 PM
 -- Server version: 10.10.2-MariaDB-1:10.10.2+maria~ubu2204
 -- PHP Version: 8.0.26
 
@@ -102,7 +102,7 @@ INSERT INTO `tenant` (`tenantId`, `firstName`, `lastName`, `email`, `phoneNumber
 (1, 'Joshua', 'Andrea', 'joshua.andrea@hotmail.com', '06-34531088', '16-04-1998', 3),
 (2, 'Guyon', 'Belgiano', 'guyon.belgiano@belgian-email.com', '+32-410032017', '03-05-1988', 18),
 (3, 'David', 'Lee', 'h.lee@naver.com', '06-12340234', '05-01-1996', 11),
-(8, 'Dominik', 'Kaniecki', 'dominikk@gmail.com', '06-55533567', '27-05-2002', 6),
+(8, 'Dominik', 'Kaniecki', 'dominikk@gmail.com', '06-55533567', '27-05-2003', 6),
 (10, 'InHolland', 'Haarlem', 'info@inholland.nl', '06-12312323', 'N/A', 19);
 
 -- --------------------------------------------------------

@@ -46,8 +46,6 @@
 
 <script src="../js/AddressPanel.js"></script>
 
-
-
 <?php
   include __DIR__ . '/../footer.php';
 ?>
