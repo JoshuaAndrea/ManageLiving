@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Feb 07, 2023 at 06:58 PM
+-- Generation Time: Feb 07, 2023 at 07:05 PM
 -- Server version: 10.10.2-MariaDB-1:10.10.2+maria~ubu2204
 -- PHP Version: 8.0.26
 
@@ -45,10 +45,6 @@ INSERT INTO `address` (`addressId`, `streetname`, `housenumber`, `extension`, `p
 (3, 'Poelenburg', 254, NULL, '1504NL', 'Zaandam', 1),
 (6, 'Bijdorplaan', 16, NULL, '2015CE', 'Haarlem', 8),
 (11, 'Poelenburg', 255, NULL, '1504NL', 'Zaandam', 3),
-(12, 'Poelenburg', 256, NULL, '1504NL', 'Zaandam', NULL),
-(15, 'Bijdorplaan', 17, NULL, '2015CE', 'Haarlem', 7),
-(16, 'Carpinistraat', 32, NULL, '5665HP', 'Geldrop', NULL),
-(17, 'Carpinistraat', 31, NULL, '5665HP', 'Geldrop', NULL),
 (18, 'Carpinistraat', 30, NULL, '5665HP', 'Geldrop', 2),
 (19, 'Bijdorplaan', 15, NULL, '2015CE', 'Haarlem', 10);
 
@@ -73,7 +69,7 @@ CREATE TABLE `contactMoment` (
 --
 
 INSERT INTO `contactMoment` (`contactMomentId`, `datetime`, `contactType`, `title`, `message`, `isResolved`, `addressId`) VALUES
-(10, '22-01-2023 14:00', 'Contact Form', 'Repair Request', 'My toilet broke pls send police', 1, 3),
+(10, '22-01-2023 14:00', 'Contact Form', 'Repair Request', 'My toilet broke pls send police', 0, 3),
 (11, '20-01-2023 13:00', 'Contact Form', 'Repair Request', 'My door knob is broken, can you please come and fix it ASAP?\n---\nTechnician has been sent. \n---\nConfirmed, door knob was damaged. Damage has been fixed.', 1, 18),
 (12, '23-01-2023 14:38', 'Telephone', 'Repair Request', 'Angry student has broken glass door, please fix ASAP.\n---\nGlass repair service dispatched. Should be fixed by 16:00 today!', 1, 19),
 (13, '25-01-2023 14:38', 'E-mail', 'Question about Contract', 'Hello, I am Joshua&#039;s girlfriend and I would like to know why he&#039;s paying so much rent. Pls email me back at bibi@email.nl', 0, 3);
