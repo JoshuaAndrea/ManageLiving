@@ -6,12 +6,9 @@ include __DIR__ . '/../header.php';
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-sm-12">
-                <h2 class=text-center>Login For Employees</h2>
+                <h2 class=text-center>Login</h2>
                 <div class="card bg-light">
                     <div class="card-body">
-                        <div id=errorbox class=form-errors>
-                            <ul></ul>
-                        </div>
                         <form>
                             <div class="mb-3">
                                 <label for="email" class="form-label">E-mail</label>
